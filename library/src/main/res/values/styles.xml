@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ProgressView">
+        <attr name="bgWidth" format="dimension"/>
+        <attr name="bgColor" format="color"/>
+        <attr name="bgCornerRadius" format="dimension"/>
+        <attr name="innerRadius" format="dimension"/>
+        <attr name="innerColor" format="color"/>
+        <attr name="edgeColor" format="color"/>
+        <attr name="ringWidth" format="dimension"/>
+        <attr name="ringColor" format="color"/>
+        <attr name="percentColor" format="color"/>
+        <attr name="percentSize" format="dimension"/>
+    </declare-styleable>
+
+</resources>

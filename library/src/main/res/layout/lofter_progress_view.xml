@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <uk.co.senab.photoview.PhotoView
+        android:id="@+id/photo_view"
+        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <chengang.library.widget.LofterProgressView
+        android:id="@+id/pv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        app:bgWidth="70dp"
+        app:bgColor="@color/white"
+        app:bgCornerRadius="12dp"
+        app:innerRadius="17dp"
+        app:innerColor="@color/white"
+        app:ringWidth="2dp"
+        app:ringColor="#fc7272"
+        app:edgeColor="#89afaeae"
+        app:percentColor="@color/gray"
+        app:percentSize="11sp"
+        android:visibility="gone"/>
+
+</RelativeLayout>
