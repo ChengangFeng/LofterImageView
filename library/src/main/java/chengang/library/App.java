@@ -28,16 +28,26 @@ public class App extends Application {
 
     private static final String TAG = "App";
 
+    private static App instance;
+
     private OkHttpClient mOkHttpClient;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        /**
-         * 初始化okhttp
-         */
+        instance = this;
+
+        //初始化okhttp
         initUnsafeOkHttpClient();
+    }
+
+    /**
+     * 获取全局应用
+     * @return
+     */
+    public static App getInstance(){
+        return instance;
     }
 
     /**

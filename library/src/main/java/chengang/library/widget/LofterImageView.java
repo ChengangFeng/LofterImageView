@@ -23,7 +23,7 @@ import uk.co.senab.photoview.PhotoView;
 
 /**
  * 带进度条加载的imageView
- * Created by urcha on 2017/6/27.
+ * Created by fengchengang on 2017/6/27.
  */
 
 public class LofterImageView extends RelativeLayout {
@@ -51,6 +51,9 @@ public class LofterImageView extends RelativeLayout {
         initView();
     }
 
+    /**
+     * 初始化监听图片下载进度的监听器
+     */
     private void initListener() {
         ProgressManager.getInstance().addResponseListener(mImageUrl, new ProgressListener() {
             @Override
@@ -58,14 +61,14 @@ public class LofterImageView extends RelativeLayout {
                 int percent = progressInfo.getPercent();
                 mProgressView.setPercent(percent);
                 if (progressInfo.isFinish() || percent == 100) {
-                    Log.d(TAG, "Glide -- finish");
+                    Log.d(TAG, "Glide --> finish");
                     mProgressView.startAnimation(getDefaultExitAnimation());
                 }
             }
 
             @Override
             public void onError(long id, Exception e) {
-                Log.d(TAG, "Glide -- error: " + e);
+                Log.d(TAG, "Glide --> error: " + e);
             }
         });
     }
@@ -76,6 +79,10 @@ public class LofterImageView extends RelativeLayout {
         mPhotoView = (PhotoView) mView.findViewById(R.id.photo_view);
     }
 
+    /**
+     * 加载图片
+     * @param imageUrl imageUrl
+     */
     public void load(String imageUrl){
         this.mImageUrl = imageUrl;
         initListener();
@@ -104,6 +111,10 @@ public class LofterImageView extends RelativeLayout {
                 .into(mPhotoView);
     }
 
+    /**
+     * 获取加载进度达到百分百后，进度条消失的动画
+     * @return
+     */
     private Animation getDefaultExitAnimation() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0F, 0.0F);
         alphaAnimation.setStartOffset(600L);
