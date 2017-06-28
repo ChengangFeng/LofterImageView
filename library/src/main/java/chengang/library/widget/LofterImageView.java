@@ -38,7 +38,7 @@ public class LofterImageView extends RelativeLayout {
     private String mImageUrl;
 
     public LofterImageView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public LofterImageView(Context context, AttributeSet attrs) {
@@ -81,9 +81,10 @@ public class LofterImageView extends RelativeLayout {
 
     /**
      * 加载图片
+     *
      * @param imageUrl imageUrl
      */
-    public void load(String imageUrl){
+    public void load(String imageUrl) {
         this.mImageUrl = imageUrl;
         initListener();
 
@@ -100,7 +101,7 @@ public class LofterImageView extends RelativeLayout {
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        if(isFromMemoryCache){
+                        if (isFromMemoryCache) {
                             mProgressView.setVisibility(GONE);
                         }
                         return false;
@@ -113,6 +114,7 @@ public class LofterImageView extends RelativeLayout {
 
     /**
      * 获取加载进度达到百分百后，进度条消失的动画
+     *
      * @return
      */
     private Animation getDefaultExitAnimation() {
@@ -121,6 +123,22 @@ public class LofterImageView extends RelativeLayout {
         alphaAnimation.setDuration(400L);
         alphaAnimation.setFillEnabled(true);
         alphaAnimation.setFillAfter(true);
+        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mProgressView.setVisibility(GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         return alphaAnimation;
     }
 }
