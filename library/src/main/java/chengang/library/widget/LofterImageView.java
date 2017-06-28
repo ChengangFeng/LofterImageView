@@ -55,8 +55,9 @@ public class LofterImageView extends RelativeLayout {
         ProgressManager.getInstance().addResponseListener(mImageUrl, new ProgressListener() {
             @Override
             public void onProgress(ProgressInfo progressInfo) {
-                mProgressView.setPercent(progressInfo.getPercent());
-                if (progressInfo.isFinish()) {
+                int percent = progressInfo.getPercent();
+                mProgressView.setPercent(percent);
+                if (progressInfo.isFinish() || percent == 100) {
                     Log.d(TAG, "Glide -- finish");
                     mProgressView.startAnimation(getDefaultExitAnimation());
                 }
