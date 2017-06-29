@@ -8,7 +8,35 @@
     <uk.co.senab.photoview.PhotoView
         android:id="@+id/photo_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <!--此处的占位图是为了gilde加载占位图的时候会将占位图拉伸，导致占位图失真-->
+    <LinearLayout
+        android:id="@+id/layout_load_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/image_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_load_error" />
+
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/image_load_error"
+            android:textColor="@color/grayb"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
     <chengang.library.widget.LofterProgressView
         android:id="@+id/pv"

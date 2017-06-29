@@ -17,7 +17,7 @@ import chengang.library.R;
  * Created by fengchengang on 2017/6/27.
  */
 
-public class LofterProgressView extends View{
+public class LofterProgressView extends View {
 
     //背景圆角矩形的宽度
     private int mBgWidth;
@@ -107,8 +107,8 @@ public class LofterProgressView extends View{
         mEdgeColor = typedArray.getColor(R.styleable.ProgressView_edgeColor, Color.RED);
         mRingWidth = typedArray.getDimensionPixelSize(R.styleable.ProgressView_ringWidth, 10);
         mRingColor = typedArray.getColor(R.styleable.ProgressView_ringColor, Color.BLUE);
-        mPercentColor = typedArray.getColor(R.styleable.ProgressView_percentColor,Color.GRAY);
-        mPercentSize = typedArray.getDimensionPixelSize(R.styleable.ProgressView_percentSize,30);
+        mPercentColor = typedArray.getColor(R.styleable.ProgressView_percentColor, Color.GRAY);
+        mPercentSize = typedArray.getDimensionPixelSize(R.styleable.ProgressView_percentSize, 30);
         typedArray.recycle();
     }
 
@@ -179,10 +179,10 @@ public class LofterProgressView extends View{
 
         float progress;
         String percentText;
-        if(mPercent != 0){
+        if (mPercent != 0) {
             progress = (float) mPercent / 100 * 360;
             percentText = mPercent + "%";
-        }else {
+        } else {
             progress = (float) mCurrentProgress / mTotalProgress * 360;
             percentText = (int) (mCurrentProgress * 1.0f / mTotalProgress * 100) + "%";
         }
@@ -214,9 +214,10 @@ public class LofterProgressView extends View{
 
     /**
      * 直接从外部设置百分比
+     *
      * @param percent 百分比
      */
-    public void setPercent(int percent){
+    public void setPercent(int percent) {
         this.mPercent = percent;
         postInvalidate();
     }

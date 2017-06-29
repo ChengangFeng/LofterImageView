@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -32,9 +33,14 @@ public class LofterImageView extends RelativeLayout {
     private Context mContext;
 
     private View mView;
+    //进度框
     private LofterProgressView mProgressView;
+    //可伸缩的imageview
     private PhotoView mPhotoView;
+    //加载失败的占位图
+    private LinearLayout mErrorLayout;
 
+    //加载图片的url
     private String mImageUrl;
 
     public LofterImageView(Context context) {
@@ -69,6 +75,7 @@ public class LofterImageView extends RelativeLayout {
             @Override
             public void onError(long id, Exception e) {
                 Log.d(TAG, "Glide --> error: " + e);
+                mErrorLayout.setVisibility(VISIBLE);
             }
         });
     }
@@ -77,6 +84,7 @@ public class LofterImageView extends RelativeLayout {
         View mView = LayoutInflater.from(mContext).inflate(R.layout.lofter_progress_view, this, true);
         mProgressView = (LofterProgressView) mView.findViewById(R.id.pv);
         mPhotoView = (PhotoView) mView.findViewById(R.id.photo_view);
+        mErrorLayout = (LinearLayout) mView.findViewById(R.id.layout_load_error);
     }
 
     /**
@@ -89,6 +97,7 @@ public class LofterImageView extends RelativeLayout {
         initListener();
 
         mProgressView.setVisibility(VISIBLE);
+        mErrorLayout.setVisibility(GONE);
         Glide.with(mContext)
                 .load(mImageUrl)
                 .listener(new RequestListener<String, GlideDrawable>() {
@@ -96,6 +105,7 @@ public class LofterImageView extends RelativeLayout {
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                         Log.e(TAG, "load error:" + e);
                         mProgressView.setVisibility(GONE);
+                        mErrorLayout.setVisibility(VISIBLE);
                         return false;
                     }
 
@@ -109,6 +119,7 @@ public class LofterImageView extends RelativeLayout {
                 })
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .crossFade(500)
+                .dontAnimate()
                 .into(mPhotoView);
     }
 

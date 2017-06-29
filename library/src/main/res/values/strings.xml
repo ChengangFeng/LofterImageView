@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Library</string>
+    <string name="image_load_error">图片加载失败</string>
 </resources>
