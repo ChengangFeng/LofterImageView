@@ -18,5 +18,7 @@
     <color name="grayslate">#708090</color>
     <color name="lightblue">#0083FF</color>
     <color name="grayb">#b3b3b3</color>
+    <color name="indicator_unselected">#333333</color>
+    <color name="indicator_selected">#fff</color>
 
 </resources>

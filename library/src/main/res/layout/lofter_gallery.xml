@@ -11,4 +11,40 @@
 
     </chengang.library.widget.LofterViewPager>
 
+    <LinearLayout
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <!--<ImageView
+            android:src="@drawable/image_indicator_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:src="@drawable/image_indicator_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:src="@drawable/image_indicator_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:src="@drawable/image_indicator_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+
+
+    </LinearLayout>
+
 </RelativeLayout>

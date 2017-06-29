@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -42,6 +43,8 @@ public class LofterImageView extends RelativeLayout {
 
     //加载图片的url
     private String mImageUrl;
+
+    private long mContentLength = 0;
 
     public LofterImageView(Context context) {
         this(context, null);
@@ -119,8 +122,8 @@ public class LofterImageView extends RelativeLayout {
                 })
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .crossFade(500)
-                .dontAnimate()
                 .into(mPhotoView);
+
     }
 
     /**
@@ -137,11 +140,12 @@ public class LofterImageView extends RelativeLayout {
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
+                Log.d(TAG,"lofterProgressView exit animation start");
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                Log.d(TAG,"lofterProgressView gone");
                 mProgressView.setVisibility(GONE);
             }
 
