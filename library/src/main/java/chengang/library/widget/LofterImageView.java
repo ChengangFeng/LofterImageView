@@ -16,12 +16,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import chengang.library.R;
 import me.jessyan.progressmanager.ProgressListener;
 import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.progressmanager.body.ProgressInfo;
-import uk.co.senab.photoview.PhotoView;
 
 /**
  * 带进度条加载的imageView
@@ -155,5 +155,9 @@ public class LofterImageView extends RelativeLayout {
             }
         });
         return alphaAnimation;
+    }
+
+    public PhotoView getPhotoView(){
+        return this.mPhotoView;
     }
 }

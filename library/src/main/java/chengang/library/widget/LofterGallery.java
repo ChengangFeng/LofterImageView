@@ -32,6 +32,8 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
 
     private LofterPagerAdapter mLofterPagerAdapter;
 
+    private int currentPagePostion = 0;
+
     //save indicators
     private List<ImageView> mIndicators = new ArrayList<>();
 
@@ -58,6 +60,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         mLofterPagerAdapter = new LofterPagerAdapter(mContext, null);
         mLofterViewPager.setAdapter(mLofterPagerAdapter);
         mLofterViewPager.addOnPageChangeListener(this);
+
     }
 
     /**
@@ -70,6 +73,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         mLofterPagerAdapter.updateImages(images);
         mLofterViewPager.setCurrentItem(index);
         mLofterViewPager.setOffscreenPageLimit(images.size());
+
         //add indicator
         initIndicator(images, index);
     }
@@ -113,6 +117,10 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         }
     }
 
+    public LofterViewPager getLofterViewPager(){
+        return mLofterViewPager;
+    }
+
     /*-------------------滑动相关-------------------*/
 
     @Override
@@ -124,6 +132,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
     public void onPageSelected(int position) {
         //改变页面的时候，改写指示器
         reloadIndicator(position);
+        currentPagePostion = position;
     }
 
     @Override

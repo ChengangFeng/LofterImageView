@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.chrisbanes.photoview.PhotoView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,18 +49,13 @@ public class LofterPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(final ViewGroup container, int position) {
-        View view = cacheView.get(position);
+        LofterImageView image = new LofterImageView(container.getContext());
+        image.load((mImages.get(position)));
 
-        if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.lofter_view_pager_item, container, false);
-            LofterImageView image = (LofterImageView) view.findViewById(R.id.vp_image);
-            //加载图片
-            image.load((mImages.get(position)));
-            //缓存
-            cacheView.put(position, view);
-        }
-        container.addView(view);
-        return view;
+        // Now just add PhotoView to ViewPager and return it
+        container.addView(image, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        return image;
     }
 
     @Override
