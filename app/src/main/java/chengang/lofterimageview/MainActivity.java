@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import chengang.library.widget.LofterImageView;
@@ -25,18 +26,21 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.OnIm
     public static final String IMAGE_URL = "http://imglf.nosdn.127.net/img/NWxuTTNsdXVnVk01WXY5VHZEcURXL1Z2ZWdXQm1VR3BoaStzY3hBMFU0aVB4YjB4QzMvOUxnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0";
 
 
-    List<String> singleImage = new ArrayList<>(Arrays.asList(
+    List<String> singleImage = new ArrayList<>(Collections.singletonList(
             "http://imglf.nosdn.127.net/img/NWxuTTNsdXVnVk01WXY5VHZEcURXL1Z2ZWdXQm1VR3BoaStzY3hBMFU0aVB4YjB4QzMvOUxnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
 
-    List<String> singleImage2 = new ArrayList<>(Arrays.asList(
+    List<String> singleImage2 = new ArrayList<>(Collections.singletonList(
             "http://imglf.nosdn.127.net/img/NWxuTTNsdXVnVlBjL1h6M0RCbDlhZFBTd3NWZ0xteVJzaktYK0tkRElLRUhabkFLSkd2YktnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
 
-    List<String> singleImage3 = new ArrayList<>(Arrays.asList(
+    List<String> singleImage3 = new ArrayList<>(Collections.singletonList(
             "http://imglf1.nosdn.127.net/img/NWxuTTNsdXVnVk1MSGpteGRzQ0VnQlMzTy9sOUNYang4aUJlS0JHZkE3WWFrWEY1VFI3dDNnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
 
 
-    List<String> singleImage4 = new ArrayList<>(Arrays.asList(
+    List<String> singleImage4 = new ArrayList<>(Collections.singletonList(
             "http://imglf2.nosdn.127.net/img/NWxuTTNsdXVnVk1tS0h3Q3FiKzN3NWhIc05Qc2hLYktrb0RaZnhjQnBGM0VnUFJuQzFrNDVRPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
+
+    List<String> gitImage = new ArrayList<>(Collections.singletonList(
+            "http://storage.slide.news.sina.com.cn/slidenews/77_ori/2017_26/74766_782959_356164.gif"));
 
     List<String> mutiImages = new ArrayList<>(Arrays.asList(
             "http://imglf1.nosdn.127.net/img/NWxuTTNsdXVnVlBIU2JiUXBjQzkySmNMdFhXWEtsNnRmVklEeGpBMElMSi9mYkVaNXpCQ0dBPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0",
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.OnIm
         images.add(singleImage2);
         images.add(singleImage3);
         images.add(singleImage4);
+        images.add(gitImage);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         ImageAdapter mAdapter = new ImageAdapter(images, this);

@@ -3,6 +3,7 @@ package chengang.library.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,18 +25,17 @@ import chengang.library.widget.LofterImageView;
  */
 
 public class LofterPagerAdapter extends PagerAdapter {
+
+    private static final String TAG = "LofterPagerAdapter";
     private Context mContext;
     private List<String> mImages;
-    private SparseArray<View> cacheView;
 
     public LofterPagerAdapter(Context context, List<String> images) {
         this.mContext = context;
         if (images != null && images.size() > 0) {
             mImages = new ArrayList<>(images);
-            cacheView = new SparseArray<>(images.size());
         } else {
             mImages = new ArrayList<>();
-            cacheView = new SparseArray<>();
         }
     }
 
@@ -52,6 +52,14 @@ public class LofterPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(final ViewGroup container, int position) {
         LofterImageView image = new LofterImageView(container.getContext());
+        image.getPhotoView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onItemClickListener != null){
+                    onItemClickListener.onItemClick((PhotoView) v);
+                }
+            }
+        });
         image.load((mImages.get(position)));
         container.addView(image, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         return image;
@@ -73,6 +81,16 @@ public class LofterPagerAdapter extends PagerAdapter {
             this.mImages.addAll(images);
             notifyDataSetChanged();
         }
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(PhotoView imageView);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
     }
 
 }

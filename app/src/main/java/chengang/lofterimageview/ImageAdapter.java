@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.image.setAdjustViewBounds(true);
-        Glide.with(mContext).load(datas.get(position).get(0)).into(viewHolder.image);
+        String imageUrl = datas.get(position).get(0);
+        if(imageUrl.endsWith("GIF") || imageUrl.endsWith("gif")){
+            Glide.with(mContext).load(imageUrl).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.image);
+        }else {
+            Glide.with(mContext).load(imageUrl).into(viewHolder.image);
+        }
     }
 
     @Override

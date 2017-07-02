@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.github.chrisbanes.photoview.PhotoView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ import chengang.library.adapter.LofterPagerAdapter;
  * Created by fengchengang on 2017/6/28.
  */
 
-public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener{
+public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener,LofterPagerAdapter.OnItemClickListener{
 
     private Context mContext;
 
@@ -63,13 +65,8 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         mLofterPagerAdapter = new LofterPagerAdapter(mContext, null);
         mLofterViewPager.setAdapter(mLofterPagerAdapter);
         mLofterViewPager.addOnPageChangeListener(this);
+        mLofterPagerAdapter.setOnItemClickListener(this);
 
-        mLofterViewPager.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext,"text",Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     /**
@@ -130,10 +127,6 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         return mLofterViewPager;
     }
 
-    public LofterImageView getLofterImageView(){
-        return (LofterImageView) mLofterViewPager.getChildAt(currentPagePostion);
-    }
-
     /*-------------------滑动相关-------------------*/
 
     @Override
@@ -153,4 +146,20 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
 
     }
 
+    @Override
+    public void onItemClick(PhotoView image) {
+        if(onImageClickListener != null){
+            onImageClickListener.onImageClick(image);
+        }
+    }
+
+    public OnImageClickListener onImageClickListener;
+
+    public interface OnImageClickListener{
+        void onImageClick(PhotoView image);
+    }
+
+    public void setOnImageClickListener(OnImageClickListener onImageClickListener){
+        this.onImageClickListener = onImageClickListener;
+    }
 }
