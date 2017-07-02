@@ -20,7 +20,7 @@ import chengang.library.widget.LofterGallery;
 import chengang.library.widget.LofterImageView;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class GalleryActivity extends AppCompatActivity implements LofterGallery.OnFirstPageInitListener {
+public class GalleryActivity extends AppCompatActivity{
 
     private LofterGallery mLofterGallery;
 
@@ -29,12 +29,10 @@ public class GalleryActivity extends AppCompatActivity implements LofterGallery.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        postponeEnterTransition();
         mLofterGallery = (LofterGallery) findViewById(R.id.lofter_Gallery);
-        mLofterGallery.setOnFirstPageInitListener(this);
 
         ArrayList<String> gallery_image = getIntent().getStringArrayListExtra("GALLERY_IMAGE");
-//        ViewCompat.setTransitionName(mLofterGallery.getLofterViewPager(), "GALLERY_IMAGE");
+        ViewCompat.setTransitionName(mLofterGallery.getLofterViewPager(), "GALLERY_IMAGE");
         mLofterGallery.showGallery(gallery_image, 0);
     }
 
@@ -44,12 +42,4 @@ public class GalleryActivity extends AppCompatActivity implements LofterGallery.
         super.onBackPressed();
     }
 
-    GalleryActivity getThis(){
-        return this;
-    }
-
-    @Override
-    public void onFirstPageInitSuccess(LofterImageView lofterImageView) {
-//        scheduleStartPostponedTransition(lofterImageView);
-    }
 }

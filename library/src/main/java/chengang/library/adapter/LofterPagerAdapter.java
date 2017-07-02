@@ -52,23 +52,8 @@ public class LofterPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(final ViewGroup container, int position) {
         LofterImageView image = new LofterImageView(container.getContext());
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onExitGalleryListener != null){
-                    onExitGalleryListener.onExitListener();
-                }
-            }
-        });
         image.load((mImages.get(position)));
-
-        // Now just add PhotoView to ViewPager and return it
         container.addView(image, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-        if(position == 0){
-            image.setTransitionName("GALLERY_IMAGE");
-            scheduleStartPostponedTransition(image);
-        }
         return image;
     }
 
@@ -90,26 +75,4 @@ public class LofterPagerAdapter extends PagerAdapter {
         }
     }
 
-    private void scheduleStartPostponedTransition(final View sharedElement) {
-        sharedElement.getViewTreeObserver().addOnPreDrawListener(
-                new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        //启动动画
-                        sharedElement.getViewTreeObserver().removeOnPreDrawListener(this);
-                        ((Activity)mContext).startPostponedEnterTransition();
-                        return true;
-                    }
-                });
-    }
-
-    private onExitGalleryListener onExitGalleryListener;
-
-    public interface onExitGalleryListener{
-        void onExitListener();
-    }
-
-    public void setOnExitGalleryListener(onExitGalleryListener onExitGalleryListener){
-        this.onExitGalleryListener = onExitGalleryListener;
-    }
 }

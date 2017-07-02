@@ -22,7 +22,7 @@ import chengang.library.adapter.LofterPagerAdapter;
  * Created by fengchengang on 2017/6/28.
  */
 
-public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener,LofterPagerAdapter.onExitGalleryListener {
+public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener{
 
     private Context mContext;
 
@@ -63,7 +63,6 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         mLofterPagerAdapter = new LofterPagerAdapter(mContext, null);
         mLofterViewPager.setAdapter(mLofterPagerAdapter);
         mLofterViewPager.addOnPageChangeListener(this);
-        mLofterPagerAdapter.setOnExitGalleryListener(this);
 
         mLofterViewPager.setOnClickListener(new OnClickListener() {
             @Override
@@ -147,29 +146,11 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         //改变页面的时候，改写指示器
         reloadIndicator(position);
         currentPagePostion = position;
-        if(onFirstPageInitListener != null){
-            onFirstPageInitListener.onFirstPageInitSuccess(getLofterImageView());
-        }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
-    }
-
-    private OnFirstPageInitListener onFirstPageInitListener;
-
-    @Override
-    public void onExitListener() {
-        mLofterViewPager.setCurrentItem(0,true);
-    }
-
-    public interface OnFirstPageInitListener{
-        void onFirstPageInitSuccess(LofterImageView lofterImageView);
-    }
-
-    public void setOnFirstPageInitListener(OnFirstPageInitListener onFirstPageInitListener){
-        this.onFirstPageInitListener = onFirstPageInitListener;
     }
 
 }
