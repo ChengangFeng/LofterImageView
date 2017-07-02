@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +22,19 @@ import chengang.library.adapter.LofterPagerAdapter;
  * Created by fengchengang on 2017/6/28.
  */
 
-public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener {
+public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener,LofterPagerAdapter.onExitGalleryListener {
 
     private Context mContext;
 
     private View mView;
     private LofterViewPager mLofterViewPager;
+    private RelativeLayout mRootLayout;
     //indicator小圆点
     private LinearLayout indicator;
 
     private LofterPagerAdapter mLofterPagerAdapter;
 
-    private int currentPagePostion = 0;
+    public int currentPagePostion = 0;
 
     //save indicators
     private List<ImageView> mIndicators = new ArrayList<>();
@@ -55,12 +57,20 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
 
     private void initView() {
         this.mView = LayoutInflater.from(mContext).inflate(R.layout.lofter_gallery, this, true);
+        mRootLayout = (RelativeLayout) mView.findViewById(R.id.root);
         mLofterViewPager = (LofterViewPager) mView.findViewById(R.id.lofter_viewpager);
         indicator = (LinearLayout) mView.findViewById(R.id.indicator);
         mLofterPagerAdapter = new LofterPagerAdapter(mContext, null);
         mLofterViewPager.setAdapter(mLofterPagerAdapter);
         mLofterViewPager.addOnPageChangeListener(this);
+        mLofterPagerAdapter.setOnExitGalleryListener(this);
 
+        mLofterViewPager.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"text",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     /**
@@ -121,6 +131,10 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         return mLofterViewPager;
     }
 
+    public LofterImageView getLofterImageView(){
+        return (LofterImageView) mLofterViewPager.getChildAt(currentPagePostion);
+    }
+
     /*-------------------滑动相关-------------------*/
 
     @Override
@@ -133,11 +147,29 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         //改变页面的时候，改写指示器
         reloadIndicator(position);
         currentPagePostion = position;
+        if(onFirstPageInitListener != null){
+            onFirstPageInitListener.onFirstPageInitSuccess(getLofterImageView());
+        }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    private OnFirstPageInitListener onFirstPageInitListener;
+
+    @Override
+    public void onExitListener() {
+        mLofterViewPager.setCurrentItem(0,true);
+    }
+
+    public interface OnFirstPageInitListener{
+        void onFirstPageInitSuccess(LofterImageView lofterImageView);
+    }
+
+    public void setOnFirstPageInitListener(OnFirstPageInitListener onFirstPageInitListener){
+        this.onFirstPageInitListener = onFirstPageInitListener;
     }
 
 }

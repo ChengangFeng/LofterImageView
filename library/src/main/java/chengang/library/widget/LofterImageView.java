@@ -40,6 +40,7 @@ public class LofterImageView extends RelativeLayout {
     private PhotoView mPhotoView;
     //加载失败的占位图
     private LinearLayout mErrorLayout;
+    private RelativeLayout mRootLayout;
 
     //加载图片的url
     private String mImageUrl;
@@ -85,6 +86,7 @@ public class LofterImageView extends RelativeLayout {
 
     private void initView() {
         View mView = LayoutInflater.from(mContext).inflate(R.layout.lofter_progress_view, this, true);
+        mRootLayout = (RelativeLayout) mView.findViewById(R.id.root);
         mProgressView = (LofterProgressView) mView.findViewById(R.id.pv);
         mPhotoView = (PhotoView) mView.findViewById(R.id.photo_view);
         mErrorLayout = (LinearLayout) mView.findViewById(R.id.layout_load_error);
@@ -159,5 +161,9 @@ public class LofterImageView extends RelativeLayout {
 
     public PhotoView getPhotoView(){
         return this.mPhotoView;
+    }
+
+    public void removeBg(){
+        mRootLayout.setBackgroundResource(R.color.alpho_zero);
     }
 }

@@ -28,6 +28,16 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.OnIm
     List<String> singleImage = new ArrayList<>(Arrays.asList(
             "http://imglf.nosdn.127.net/img/NWxuTTNsdXVnVk01WXY5VHZEcURXL1Z2ZWdXQm1VR3BoaStzY3hBMFU0aVB4YjB4QzMvOUxnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
 
+    List<String> singleImage2 = new ArrayList<>(Arrays.asList(
+            "http://imglf.nosdn.127.net/img/NWxuTTNsdXVnVlBjL1h6M0RCbDlhZFBTd3NWZ0xteVJzaktYK0tkRElLRUhabkFLSkd2YktnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
+
+    List<String> singleImage3 = new ArrayList<>(Arrays.asList(
+            "http://imglf1.nosdn.127.net/img/NWxuTTNsdXVnVk1MSGpteGRzQ0VnQlMzTy9sOUNYang4aUJlS0JHZkE3WWFrWEY1VFI3dDNnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
+
+
+    List<String> singleImage4 = new ArrayList<>(Arrays.asList(
+            "http://imglf2.nosdn.127.net/img/NWxuTTNsdXVnVk1tS0h3Q3FiKzN3NWhIc05Qc2hLYktrb0RaZnhjQnBGM0VnUFJuQzFrNDVRPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
+
     List<String> mutiImages = new ArrayList<>(Arrays.asList(
             "http://imglf1.nosdn.127.net/img/NWxuTTNsdXVnVlBIU2JiUXBjQzkySmNMdFhXWEtsNnRmVklEeGpBMElMSi9mYkVaNXpCQ0dBPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0",
             "http://imglf1.nosdn.127.net/img/NWxuTTNsdXVnVlB0Y0YzdDBWMFZ0dnVlWnFSK3R0cHBuRnFXREc0WUlVU2ZHcGVZcEkydWZnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg6ZmI5bKX5LiN5aeT6ZmIIC8gY2hhbmtvbmcubG9mdGVyLmNvbQ==&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=680&dx=32&dy=36&stripmeta=0"));
@@ -46,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.OnIm
         setContentView(R.layout.activity_main);
         images.add(singleImage);
         images.add(mutiImages);
+        images.add(singleImage2);
+        images.add(singleImage3);
+        images.add(singleImage4);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         ImageAdapter mAdapter = new ImageAdapter(images, this);
         mRecyclerView.setAdapter(mAdapter);

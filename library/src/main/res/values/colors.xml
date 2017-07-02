@@ -20,5 +20,6 @@
     <color name="grayb">#b3b3b3</color>
     <color name="indicator_unselected">#333333</color>
     <color name="indicator_selected">#fff</color>
+    <color name="alpho_zero">#00ffffff</color>
 
 </resources>
