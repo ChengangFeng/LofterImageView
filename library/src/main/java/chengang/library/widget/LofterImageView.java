@@ -10,7 +10,6 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -41,6 +40,7 @@ public class LofterImageView extends RelativeLayout {
     //加载失败的占位图
     private LinearLayout mErrorLayout;
     private RelativeLayout mRootLayout;
+    private boolean isLoadSuccess = false;
 
     //加载图片的url
     private String mImageUrl;
@@ -61,6 +61,7 @@ public class LofterImageView extends RelativeLayout {
         initView();
     }
 
+
     /**
      * 初始化监听图片下载进度的监听器
      */
@@ -70,9 +71,10 @@ public class LofterImageView extends RelativeLayout {
             public void onProgress(ProgressInfo progressInfo) {
                 int percent = progressInfo.getPercent();
                 mProgressView.setPercent(percent);
-                if (progressInfo.isFinish() || percent == 100) {
+                if (!isLoadSuccess && (progressInfo.isFinish() || percent == 100)) {
                     Log.d(TAG, "Glide --> finish");
                     mProgressView.startAnimation(getDefaultExitAnimation());
+                    isLoadSuccess = true;
                 }
             }
 
@@ -111,18 +113,18 @@ public class LofterImageView extends RelativeLayout {
                         Log.e(TAG, "load error:" + e);
                         mProgressView.setVisibility(GONE);
                         mErrorLayout.setVisibility(VISIBLE);
+                        Log.d(TAG,"lofterProgressView gone");
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        if (isFromMemoryCache) {
-                            mProgressView.setVisibility(GONE);
-                        }
+                        mProgressView.startAnimation(getDefaultExitAnimation());
+                        isLoadSuccess = true;
                         return false;
                     }
                 })
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade(500)
                 .into(mPhotoView);
 
@@ -149,6 +151,9 @@ public class LofterImageView extends RelativeLayout {
             public void onAnimationEnd(Animation animation) {
                 Log.d(TAG,"lofterProgressView gone");
                 mProgressView.setVisibility(GONE);
+                if(onImageLoadSuccessListener != null){
+                    onImageLoadSuccessListener.onImageLoadSuccess(mPhotoView);
+                }
             }
 
             @Override
@@ -161,6 +166,20 @@ public class LofterImageView extends RelativeLayout {
 
     public PhotoView getPhotoView(){
         return this.mPhotoView;
+    }
+
+    public void removeBg(){
+        mRootLayout.setBackgroundResource(R.color.alpho_zero);
+    }
+
+    private OnImageLoadSuccessListener onImageLoadSuccessListener;
+
+    public interface OnImageLoadSuccessListener{
+        void onImageLoadSuccess(PhotoView photoView);
+    }
+
+    public void setOnImageLoadSuccessListener(OnImageLoadSuccessListener onImageLoadSuccessListener){
+        this.onImageLoadSuccessListener = onImageLoadSuccessListener;
     }
 
 }

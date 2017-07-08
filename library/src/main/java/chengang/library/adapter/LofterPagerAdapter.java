@@ -1,8 +1,11 @@
 package chengang.library.adapter;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -30,12 +33,28 @@ public class LofterPagerAdapter extends PagerAdapter {
     private Context mContext;
     private List<String> mImages;
 
+    private static ArrayList<LofterImageView>  mPhotoViewPool;
+    private static final int mPhotoViewPoolSize = 9;
+
+
     public LofterPagerAdapter(Context context, List<String> images) {
         this.mContext = context;
         if (images != null && images.size() > 0) {
             mImages = new ArrayList<>(images);
         } else {
             mImages = new ArrayList<>();
+        }
+
+        mPhotoViewPool = new ArrayList<>();
+        buildMLofterImageViewPool();
+    }
+
+    private void buildMLofterImageViewPool() {
+        for (int i = 0; i < mPhotoViewPoolSize; i++) {
+            LofterImageView mLofterImageView = new LofterImageView(mContext);
+            mLofterImageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            mPhotoViewPool.add(mLofterImageView);
         }
     }
 
@@ -51,7 +70,13 @@ public class LofterPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(final ViewGroup container, int position) {
-        LofterImageView image = new LofterImageView(container.getContext());
+        LofterImageView image = mPhotoViewPool.get(position);
+        if(image == null){
+            image = new LofterImageView(mContext);
+            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+
+        }
         image.getPhotoView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +86,7 @@ public class LofterPagerAdapter extends PagerAdapter {
             }
         });
         image.load((mImages.get(position)));
-        container.addView(image, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        container.addView(image);
         return image;
     }
 

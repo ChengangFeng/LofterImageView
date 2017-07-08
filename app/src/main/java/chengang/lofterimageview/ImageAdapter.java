@@ -48,11 +48,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.image.setAdjustViewBounds(true);
         String imageUrl = datas.get(position).get(0);
-        if(imageUrl.endsWith("GIF") || imageUrl.endsWith("gif")){
-            Glide.with(mContext).load(imageUrl).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.image);
-        }else {
-            Glide.with(mContext).load(imageUrl).into(viewHolder.image);
-        }
+        Glide.with(mContext).load(imageUrl).into(viewHolder.image);
     }
 
     @Override

@@ -3,6 +3,7 @@ package chengang.lofterimageview;
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -63,14 +64,12 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.OnIm
         images.add(singleImage2);
         images.add(singleImage3);
         images.add(singleImage4);
-        images.add(gitImage);
+//        images.add(gitImage);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         ImageAdapter mAdapter = new ImageAdapter(images, this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter.setOnImageClickListener(this);
     }
 
@@ -79,13 +78,12 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.OnIm
         if(imageList.size() > 1){
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, "GALLERY_IMAGE");
             Intent intent = new Intent(this, GalleryActivity.class);
-            intent.putExtra("GALLERY_IMAGE", imageList.toArray());
             intent.putStringArrayListExtra("GALLERY_IMAGE", (ArrayList<String>) imageList);
             ActivityCompat.startActivity(this, intent, options.toBundle());
         }else {
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, "EXTRA_IMAGE");
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, "GALLERY_IMAGE");
             Intent intent = new Intent(this, DetailActivity.class);
-            intent.putExtra("EXTRA_IMAGE", imageList.get(0));
+            intent.putExtra("GALLERY_IMAGE", imageList.get(0));
             ActivityCompat.startActivity(this, intent, options.toBundle());
         }
     }
