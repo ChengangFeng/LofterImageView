@@ -1,7 +1,5 @@
 package chengang.lofterimageview;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 
 import chengang.library.widget.LofterGallery;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class GalleryActivity extends AppCompatActivity implements LofterGallery.OnImageClickListener{
 
     private LofterGallery mLofterGallery;
@@ -22,8 +19,6 @@ public class GalleryActivity extends AppCompatActivity implements LofterGallery.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        // 延迟共享动画的执行
-//        postponeEnterTransition();
         mLofterGallery = (LofterGallery) findViewById(R.id.lofter_Gallery);
         mLofterGallery.setOnImageClickListener(this);
         ArrayList<String> gallery_image = getIntent().getStringArrayListExtra("GALLERY_IMAGE");
@@ -47,4 +42,9 @@ public class GalleryActivity extends AppCompatActivity implements LofterGallery.
         onBackPressed();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mLofterGallery.destroy();
+    }
 }

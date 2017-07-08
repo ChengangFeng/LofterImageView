@@ -78,7 +78,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
     public void showGallery(List<String> images, int index) {
         mLofterPagerAdapter.updateImages(images);
         mLofterViewPager.setCurrentItem(index);
-        mLofterViewPager.setOffscreenPageLimit(images.size());
+//        mLofterViewPager.setOffscreenPageLimit(images.size());
 
         //add indicator
         initIndicator(images, index);
@@ -161,5 +161,11 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
 
     public void setOnImageClickListener(OnImageClickListener onImageClickListener){
         this.onImageClickListener = onImageClickListener;
+    }
+
+    public void destroy(){
+        if(mLofterPagerAdapter != null){
+            mLofterPagerAdapter.destroy();
+        }
     }
 }

@@ -1,6 +1,7 @@
 package chengang.library.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import chengang.library.R;
+import chengang.library.utils.ImageUtil;
 import me.jessyan.progressmanager.ProgressListener;
 import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.progressmanager.body.ProgressInfo;
@@ -73,8 +75,6 @@ public class LofterImageView extends RelativeLayout {
                 mProgressView.setPercent(percent);
                 if (!isLoadSuccess && (progressInfo.isFinish() || percent == 100)) {
                     Log.d(TAG, "Glide --> finish");
-                    mProgressView.startAnimation(getDefaultExitAnimation());
-                    isLoadSuccess = true;
                 }
             }
 
@@ -119,8 +119,9 @@ public class LofterImageView extends RelativeLayout {
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        mProgressView.startAnimation(getDefaultExitAnimation());
-                        isLoadSuccess = true;
+                    mProgressView.setPercent(100);
+                    mProgressView.startAnimation(getDefaultExitAnimation());
+                    isLoadSuccess = true;
                         return false;
                     }
                 })
@@ -180,6 +181,13 @@ public class LofterImageView extends RelativeLayout {
 
     public void setOnImageLoadSuccessListener(OnImageLoadSuccessListener onImageLoadSuccessListener){
         this.onImageLoadSuccessListener = onImageLoadSuccessListener;
+    }
+
+    public void destroy(){
+        if(mPhotoView != null){
+            mPhotoView.setImageBitmap(null);
+            ImageUtil.releaseImageViewResouce(mPhotoView);
+        }
     }
 
 }

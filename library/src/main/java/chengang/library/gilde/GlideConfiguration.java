@@ -16,7 +16,7 @@ import com.bumptech.glide.request.target.ViewTarget;
 
 import java.io.InputStream;
 
-import chengang.library.App;
+import chengang.library.BaseApplication;
 import chengang.library.R;
 
 /**
@@ -36,7 +36,7 @@ public class GlideConfiguration implements GlideModule {
         /*
         内存缓存
         Glide提供了一个类MemorySizeCalculator，用于决定内存缓存大小以及 bitmap 的缓存池。
-        bitmap 池维护了你 App 的堆中的图像分配。
+        bitmap 池维护了你 BaseApplication 的堆中的图像分配。
         正确的 bitmpa 池是非常必要的，因为它避免很多的图像重复回收，这样可以确保垃圾回收器的管理更加合理。
         它的默认计算实现
         */
@@ -58,7 +58,7 @@ public class GlideConfiguration implements GlideModule {
 
     @Override
     public void registerComponents(Context context, Glide glide) {
-        App application = (App) context.getApplicationContext();
+        BaseApplication application = (BaseApplication) context.getApplicationContext();
         //Glide 底层默认使用 HttpConnection 进行网络请求,这里替换为 Okhttp 后才能使用本框架,进行 Glide 的加载进度监听
         glide.register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(application.getOkHttpClient()));
     }

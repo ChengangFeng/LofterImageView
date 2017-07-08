@@ -24,11 +24,11 @@ import okhttp3.OkHttpClient;
  * Created by fengchengang on 2017/6/27.
  */
 
-public class App extends Application {
+public class BaseApplication extends Application {
 
-    private static final String TAG = "App";
+    private static final String TAG = "BaseApplication";
 
-    private static App instance;
+    private static BaseApplication instance;
 
     private OkHttpClient mOkHttpClient;
 
@@ -46,7 +46,7 @@ public class App extends Application {
      * 获取全局应用
      * @return
      */
-    public static App getInstance(){
+    public static BaseApplication getInstance(){
         return instance;
     }
 
