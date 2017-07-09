@@ -71,6 +71,7 @@ public class LofterImageView extends RelativeLayout {
             @Override
             public void onProgress(ProgressInfo progressInfo) {
                 int percent = progressInfo.getPercent();
+                mProgressView.setVisibility(VISIBLE);
                 mProgressView.setPercent(percent);
                 if (!isLoadSuccess && (progressInfo.isFinish() || percent == 100)) {
                     Log.d(TAG, "Glide --> finish");
@@ -102,7 +103,6 @@ public class LofterImageView extends RelativeLayout {
         this.mImageUrl = imageUrl;
         initListener();
 
-        mProgressView.setVisibility(VISIBLE);
         mErrorLayout.setVisibility(GONE);
         Glide.with(mContext)
                 .load(mImageUrl)
@@ -118,8 +118,9 @@ public class LofterImageView extends RelativeLayout {
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        mProgressView.setPercent(100);
-                        mProgressView.startAnimation(getDefaultExitAnimation());
+                        if (!isFromMemoryCache) {
+                            mProgressView.startAnimation(getDefaultExitAnimation());
+                        }
                         isLoadSuccess = true;
                         return false;
                     }
@@ -151,9 +152,6 @@ public class LofterImageView extends RelativeLayout {
             public void onAnimationEnd(Animation animation) {
                 Log.d(TAG, "lofterProgressView gone");
                 mProgressView.setVisibility(GONE);
-                if (onImageLoadSuccessListener != null) {
-                    onImageLoadSuccessListener.onImageLoadSuccess(mPhotoView);
-                }
             }
 
             @Override
@@ -170,16 +168,6 @@ public class LofterImageView extends RelativeLayout {
 
     public void removeBg() {
         mRootLayout.setBackgroundResource(R.color.alpho_zero);
-    }
-
-    private OnImageLoadSuccessListener onImageLoadSuccessListener;
-
-    public interface OnImageLoadSuccessListener {
-        void onImageLoadSuccess(PhotoView photoView);
-    }
-
-    public void setOnImageLoadSuccessListener(OnImageLoadSuccessListener onImageLoadSuccessListener) {
-        this.onImageLoadSuccessListener = onImageLoadSuccessListener;
     }
 
     public void destroy() {

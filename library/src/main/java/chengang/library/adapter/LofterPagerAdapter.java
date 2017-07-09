@@ -109,6 +109,9 @@ public class LofterPagerAdapter extends PagerAdapter {
         this.onItemClickListener = onItemClickListener;
     }
 
+    /**
+     * 清空图片池
+     */
     public void destroy() {
         for (LofterImageView lofterImageView : mPhotoViewPool) {
             lofterImageView.destroy();

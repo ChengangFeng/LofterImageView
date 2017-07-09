@@ -161,6 +161,9 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         this.onImageClickListener = onImageClickListener;
     }
 
+    /**
+     * 释放图片资源
+     */
     public void destroy() {
         if (mLofterPagerAdapter != null) {
             mLofterPagerAdapter.destroy();
