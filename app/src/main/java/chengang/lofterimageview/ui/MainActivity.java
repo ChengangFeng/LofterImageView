@@ -1,26 +1,26 @@
-package chengang.lofterimageview;
+package chengang.lofterimageview.ui;
 
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import chengang.library.widget.LofterImageView;
-
+import chengang.lofterimageview.adapter.ImageAdapter;
+import chengang.lofterimageview.R;
+/**
+ * Created by 陈岗不行陈 on 2017/6/27.
+ * <p>
+ * 主页面
+ */
 public class MainActivity extends AppCompatActivity implements ImageAdapter.OnImageClickListener {
 
     private static final String TAG = "MainActivity";
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.OnIm
         images.add(singleImage2);
         images.add(singleImage3);
         images.add(singleImage4);
-//        images.add(gitImage);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         ImageAdapter mAdapter = new ImageAdapter(images, this);

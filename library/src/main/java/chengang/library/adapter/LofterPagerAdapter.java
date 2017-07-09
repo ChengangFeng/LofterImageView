@@ -1,39 +1,30 @@
 package chengang.library.adapter;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewCompat;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import chengang.library.R;
 import chengang.library.widget.LofterImageView;
 
-/**
- * 多图预览采用PagerAdapter
- * <p>
- * Created by fengchengang on 2017/6/28.
- */
 
+/**
+ * Created by 陈岗不行陈 on 2017/6/28.
+ * <p>
+ * 多图预览PagerAdapter
+ */
 public class LofterPagerAdapter extends PagerAdapter {
 
     private static final String TAG = "LofterPagerAdapter";
     private Context mContext;
     private List<String> mImages;
 
-    private static ArrayList<LofterImageView>  mPhotoViewPool;
+    private static ArrayList<LofterImageView> mPhotoViewPool;
     private static final int mPhotoViewPoolSize = 9;
 
 
@@ -71,7 +62,7 @@ public class LofterPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(final ViewGroup container, int position) {
         LofterImageView image = mPhotoViewPool.get(position);
-        if(image == null){
+        if (image == null) {
             image = new LofterImageView(mContext);
             image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
@@ -80,7 +71,7 @@ public class LofterPagerAdapter extends PagerAdapter {
         image.getPhotoView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onItemClickListener != null){
+                if (onItemClickListener != null) {
                     onItemClickListener.onItemClick((PhotoView) v);
                 }
             }
@@ -110,20 +101,20 @@ public class LofterPagerAdapter extends PagerAdapter {
 
     private OnItemClickListener onItemClickListener;
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(PhotoView imageView);
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public void destroy(){
+    public void destroy() {
         for (LofterImageView lofterImageView : mPhotoViewPool) {
             lofterImageView.destroy();
         }
         mPhotoViewPool.clear();
-        mPhotoViewPool=null;
+        mPhotoViewPool = null;
     }
 
 }

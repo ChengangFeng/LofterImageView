@@ -13,10 +13,10 @@ import android.view.View;
 import chengang.library.R;
 
 /**
+ * Created by 陈岗不行陈 on 2017/6/27.
+ * <p>
  * 加载进度框
- * Created by fengchengang on 2017/6/27.
  */
-
 public class LofterProgressView extends View {
 
     //背景圆角矩形的宽度

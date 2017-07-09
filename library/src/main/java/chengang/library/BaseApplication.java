@@ -20,10 +20,10 @@ import me.jessyan.progressmanager.ProgressManager;
 import okhttp3.OkHttpClient;
 
 /**
+ * Created by 陈岗不行陈 on 2017/6/27.
+ * <p>
  * 获取全局Application
- * Created by fengchengang on 2017/6/27.
  */
-
 public class BaseApplication extends Application {
 
     private static final String TAG = "BaseApplication";
@@ -44,9 +44,10 @@ public class BaseApplication extends Application {
 
     /**
      * 获取全局应用
+     *
      * @return
      */
-    public static BaseApplication getInstance(){
+    public static BaseApplication getInstance() {
         return instance;
     }
 

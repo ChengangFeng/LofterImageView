@@ -1,4 +1,4 @@
-package chengang.lofterimageview;
+package chengang.lofterimageview.ui;
 
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +9,16 @@ import com.github.chrisbanes.photoview.PhotoView;
 import java.util.ArrayList;
 
 import chengang.library.widget.LofterGallery;
+import chengang.lofterimageview.R;
 
-public class GalleryActivity extends AppCompatActivity implements LofterGallery.OnImageClickListener{
+/**
+ * Created by 陈岗不行陈 on 2017/6/28.
+ * <p>
+ * 多图预览Activity
+ */
+public class GalleryActivity extends AppCompatActivity implements LofterGallery.OnImageClickListener {
 
     private LofterGallery mLofterGallery;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class GalleryActivity extends AppCompatActivity implements LofterGallery.
             public void run() {
                 GalleryActivity.super.onBackPressed();
             }
-        },200);
+        }, 200);
     }
 
     @Override

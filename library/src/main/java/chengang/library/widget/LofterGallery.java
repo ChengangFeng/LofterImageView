@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -19,12 +18,11 @@ import chengang.library.R;
 import chengang.library.adapter.LofterPagerAdapter;
 
 /**
- * 多图预览
+ * Created by 陈岗不行陈 on 2017/6/28.
  * <p>
- * Created by fengchengang on 2017/6/28.
+ * 多图预览控件
  */
-
-public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener,LofterPagerAdapter.OnItemClickListener{
+public class LofterGallery extends RelativeLayout implements ViewPager.OnPageChangeListener, LofterPagerAdapter.OnItemClickListener {
 
     private Context mContext;
 
@@ -123,7 +121,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         }
     }
 
-    public LofterViewPager getLofterViewPager(){
+    public LofterViewPager getLofterViewPager() {
         return mLofterViewPager;
     }
 
@@ -148,23 +146,23 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
 
     @Override
     public void onItemClick(PhotoView image) {
-        if(onImageClickListener != null){
+        if (onImageClickListener != null) {
             onImageClickListener.onImageClick(image);
         }
     }
 
     public OnImageClickListener onImageClickListener;
 
-    public interface OnImageClickListener{
+    public interface OnImageClickListener {
         void onImageClick(PhotoView image);
     }
 
-    public void setOnImageClickListener(OnImageClickListener onImageClickListener){
+    public void setOnImageClickListener(OnImageClickListener onImageClickListener) {
         this.onImageClickListener = onImageClickListener;
     }
 
-    public void destroy(){
-        if(mLofterPagerAdapter != null){
+    public void destroy() {
+        if (mLofterPagerAdapter != null) {
             mLofterPagerAdapter.destroy();
         }
     }

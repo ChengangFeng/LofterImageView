@@ -12,10 +12,9 @@ import android.view.MotionEvent;
  * 解决跟PhotoView配合使用，快速缩放会报
  * Java.lang.IllegalArgumentException:pointerIndex out of range异常的问题
  * <p>
- * Created by fengchengang on 2017/6/28.
  */
 
-public class LofterViewPager extends ViewPager{
+public class LofterViewPager extends ViewPager {
 
     public LofterViewPager(Context context) {
         super(context);

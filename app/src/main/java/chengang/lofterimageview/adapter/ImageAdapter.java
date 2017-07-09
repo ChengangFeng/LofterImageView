@@ -1,4 +1,4 @@
-package chengang.lofterimageview;
+package chengang.lofterimageview.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,10 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
-import java.util.Map;
+
+import chengang.lofterimageview.R;
+import chengang.lofterimageview.utils.ScreenUtils;
 
 /**
  * Image adapter
@@ -26,8 +27,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     private OnImageClickListener onImageClickListener;
 
-    private int ANIMATED_ITEMS_COUNT=3;
-    private int lastAnimatedPosition=-1;
+    private int ANIMATED_ITEMS_COUNT = 3;
+    private int lastAnimatedPosition = -1;
 
     public ImageAdapter(List<List<String>> datas, Context context) {
         this.datas = datas;
@@ -41,7 +42,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         vh.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onImageClickListener != null){
+                if (onImageClickListener != null) {
                     onImageClickListener.onImageClick(datas.get(vh.getAdapterPosition()), vh.image);
                 }
             }
@@ -51,7 +52,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        runEnterAnimation(viewHolder.itemView,position);
+        runEnterAnimation(viewHolder.itemView, position);
         viewHolder.image.setAdjustViewBounds(true);
         String imageUrl = datas.get(position).get(0);
         Glide.with(mContext).load(imageUrl).placeholder(Color.GRAY).into(viewHolder.image);
@@ -74,11 +75,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         }
     }
 
-    interface OnImageClickListener{
-        void onImageClick(List<String> images,ImageView imageView);
+    public interface OnImageClickListener {
+        void onImageClick(List<String> images, ImageView imageView);
     }
 
-    public void setOnImageClickListener(OnImageClickListener onImageClickListener){
+    public void setOnImageClickListener(OnImageClickListener onImageClickListener) {
         this.onImageClickListener = onImageClickListener;
     }
 

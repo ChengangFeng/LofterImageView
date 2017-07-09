@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="chengang.lofterimageview.GalleryActivity">
+    tools:context="chengang.lofterimageview.ui.GalleryActivity">
 
     <chengang.library.widget.LofterGallery
         android:id="@+id/lofter_Gallery"

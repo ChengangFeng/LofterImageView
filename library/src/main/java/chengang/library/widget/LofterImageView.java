@@ -1,7 +1,6 @@
 package chengang.library.widget;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,10 +24,10 @@ import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.progressmanager.body.ProgressInfo;
 
 /**
+ * Created by 陈岗不行陈 on 2017/6/27.
+ * <p>
  * 带进度条加载的imageView
- * Created by fengchengang on 2017/6/27.
  */
-
 public class LofterImageView extends RelativeLayout {
 
     private static final String TAG = "LofterProgressView";
@@ -113,15 +112,15 @@ public class LofterImageView extends RelativeLayout {
                         Log.e(TAG, "load error:" + e);
                         mProgressView.setVisibility(GONE);
                         mErrorLayout.setVisibility(VISIBLE);
-                        Log.d(TAG,"lofterProgressView gone");
+                        Log.d(TAG, "lofterProgressView gone");
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                    mProgressView.setPercent(100);
-                    mProgressView.startAnimation(getDefaultExitAnimation());
-                    isLoadSuccess = true;
+                        mProgressView.setPercent(100);
+                        mProgressView.startAnimation(getDefaultExitAnimation());
+                        isLoadSuccess = true;
                         return false;
                     }
                 })
@@ -145,14 +144,14 @@ public class LofterImageView extends RelativeLayout {
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                Log.d(TAG,"lofterProgressView exit animation start");
+                Log.d(TAG, "lofterProgressView exit animation start");
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Log.d(TAG,"lofterProgressView gone");
+                Log.d(TAG, "lofterProgressView gone");
                 mProgressView.setVisibility(GONE);
-                if(onImageLoadSuccessListener != null){
+                if (onImageLoadSuccessListener != null) {
                     onImageLoadSuccessListener.onImageLoadSuccess(mPhotoView);
                 }
             }
@@ -165,26 +164,26 @@ public class LofterImageView extends RelativeLayout {
         return alphaAnimation;
     }
 
-    public PhotoView getPhotoView(){
+    public PhotoView getPhotoView() {
         return this.mPhotoView;
     }
 
-    public void removeBg(){
+    public void removeBg() {
         mRootLayout.setBackgroundResource(R.color.alpho_zero);
     }
 
     private OnImageLoadSuccessListener onImageLoadSuccessListener;
 
-    public interface OnImageLoadSuccessListener{
+    public interface OnImageLoadSuccessListener {
         void onImageLoadSuccess(PhotoView photoView);
     }
 
-    public void setOnImageLoadSuccessListener(OnImageLoadSuccessListener onImageLoadSuccessListener){
+    public void setOnImageLoadSuccessListener(OnImageLoadSuccessListener onImageLoadSuccessListener) {
         this.onImageLoadSuccessListener = onImageLoadSuccessListener;
     }
 
-    public void destroy(){
-        if(mPhotoView != null){
+    public void destroy() {
+        if (mPhotoView != null) {
             mPhotoView.setImageBitmap(null);
             ImageUtil.releaseImageViewResouce(mPhotoView);
         }

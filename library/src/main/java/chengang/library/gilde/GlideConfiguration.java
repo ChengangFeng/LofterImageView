@@ -20,11 +20,10 @@ import chengang.library.BaseApplication;
 import chengang.library.R;
 
 /**
- * Glide自定义配置
+ * Created by 陈岗不行陈 on 2017/6/27.
  * <p>
- * Created by fengchengang on 2017/6/27.
+ * Glide自定义配置
  */
-
 public class GlideConfiguration implements GlideModule {
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
@@ -43,7 +42,7 @@ public class GlideConfiguration implements GlideModule {
         MemorySizeCalculator memorySizeCalculator = new MemorySizeCalculator(context);
         int defaultMemoryCacheSize = memorySizeCalculator.getMemoryCacheSize();
         int defaultBitmapPoolSize = memorySizeCalculator.getBitmapPoolSize();
-        builder.setMemoryCache(new LruResourceCache((int) (defaultMemoryCacheSize*1.2f)));
+        builder.setMemoryCache(new LruResourceCache((int) (defaultMemoryCacheSize * 1.2f)));
         builder.setBitmapPool(new LruBitmapPool((int) (defaultBitmapPoolSize * 1.2f)));
 
         /*

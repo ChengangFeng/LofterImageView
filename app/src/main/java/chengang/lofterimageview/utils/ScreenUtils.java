@@ -1,4 +1,4 @@
-package chengang.lofterimageview;
+package chengang.lofterimageview.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
