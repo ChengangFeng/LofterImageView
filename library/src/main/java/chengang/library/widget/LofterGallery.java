@@ -27,7 +27,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
     private Context mContext;
 
     private View mView;
-    private LofterViewPager mLofterViewPager;
+    private HackyViewPager mLofterViewPager;
     private RelativeLayout mRootLayout;
     //indicator小圆点
     private LinearLayout indicator;
@@ -58,7 +58,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
     private void initView() {
         this.mView = LayoutInflater.from(mContext).inflate(R.layout.lofter_gallery, this, true);
         mRootLayout = (RelativeLayout) mView.findViewById(R.id.root);
-        mLofterViewPager = (LofterViewPager) mView.findViewById(R.id.lofter_viewpager);
+        mLofterViewPager = (HackyViewPager) mView.findViewById(R.id.lofter_viewpager);
         indicator = (LinearLayout) mView.findViewById(R.id.indicator);
         mLofterPagerAdapter = new LofterPagerAdapter(mContext, null);
         mLofterViewPager.setAdapter(mLofterPagerAdapter);
@@ -121,7 +121,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         }
     }
 
-    public LofterViewPager getLofterViewPager() {
+    public HackyViewPager getLofterViewPager() {
         return mLofterViewPager;
     }
 

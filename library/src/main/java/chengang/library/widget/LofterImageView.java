@@ -46,8 +46,6 @@ public class LofterImageView extends RelativeLayout {
     //加载图片的url
     private String mImageUrl;
 
-    private long mContentLength = 0;
-
     public LofterImageView(Context context) {
         this(context, null);
     }
@@ -61,7 +59,6 @@ public class LofterImageView extends RelativeLayout {
         this.mContext = context;
         initView();
     }
-
 
     /**
      * 初始化监听图片下载进度的监听器
