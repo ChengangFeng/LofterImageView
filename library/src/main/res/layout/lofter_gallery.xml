@@ -21,30 +21,6 @@
         android:gravity="center"
         android:layout_marginBottom="20dp">
 
-        <!--<ImageView
-            android:src="@drawable/image_indicator_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"/>
-
-        <ImageView
-            android:src="@drawable/image_indicator_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"/>
-
-        <ImageView
-            android:src="@drawable/image_indicator_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"/>
-
-        <ImageView
-            android:src="@drawable/image_indicator_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>-->
-
-
     </LinearLayout>
 
 </RelativeLayout>

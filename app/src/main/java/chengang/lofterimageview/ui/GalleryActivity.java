@@ -33,13 +33,14 @@ public class GalleryActivity extends AppCompatActivity implements LofterGallery.
 
     @Override
     public void onBackPressed() {
+        mLofterGallery.hideIndicator();
         mLofterGallery.getLofterViewPager().setCurrentItem(0, true);
         getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {
                 GalleryActivity.super.onBackPressed();
             }
-        }, 200);
+        }, 450);
     }
 
     @Override

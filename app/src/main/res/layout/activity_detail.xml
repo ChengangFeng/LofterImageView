@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="chengang.lofterimageview.ui.DetailActivity">
+    tools:context="chengang.lofterimageview.ui.DetailActivity"
+    android:background="@color/black">
 
     <chengang.library.widget.LofterImageView
         android:id="@+id/image_detail"

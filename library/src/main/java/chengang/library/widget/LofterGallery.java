@@ -59,6 +59,7 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
         this.mView = LayoutInflater.from(mContext).inflate(R.layout.lofter_gallery, this, true);
         mRootLayout = (RelativeLayout) mView.findViewById(R.id.root);
         mLofterViewPager = (HackyViewPager) mView.findViewById(R.id.lofter_viewpager);
+        mLofterViewPager.setPageTransformer(false, new ZoomOutPageTransformer());
         indicator = (LinearLayout) mView.findViewById(R.id.indicator);
         mLofterPagerAdapter = new LofterPagerAdapter(mContext, null);
         mLofterViewPager.setAdapter(mLofterPagerAdapter);
@@ -74,12 +75,16 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
      * @param index  下标
      */
     public void showGallery(List<String> images, int index) {
+        if(images == null || images.size() == 0){
+            throw new NullPointerException("images is null or its size is zero");
+        }
         mLofterPagerAdapter.updateImages(images);
         mLofterViewPager.setCurrentItem(index);
-//        mLofterViewPager.setOffscreenPageLimit(images.size());
 
         //add indicator
-        initIndicator(images, index);
+        if(images.size() > 1){
+            initIndicator(images, index);
+        }
     }
 
     /**
@@ -119,6 +124,13 @@ public class LofterGallery extends RelativeLayout implements ViewPager.OnPageCha
                 }
             }
         }
+    }
+
+    /**
+     * 隐藏指示器
+     */
+    public void hideIndicator(){
+        indicator.setVisibility(GONE);
     }
 
     public HackyViewPager getLofterViewPager() {
