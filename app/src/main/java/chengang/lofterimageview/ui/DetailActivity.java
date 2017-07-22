@@ -38,7 +38,6 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        lofterImageView.removeBg();
         getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {

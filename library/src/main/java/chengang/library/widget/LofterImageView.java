@@ -163,10 +163,6 @@ public class LofterImageView extends RelativeLayout {
         return this.mPhotoView;
     }
 
-    public void removeBg() {
-        mRootLayout.setBackgroundResource(R.color.alpho_zero);
-    }
-
     public void destroy() {
         if (mPhotoView != null) {
             mPhotoView.setImageBitmap(null);

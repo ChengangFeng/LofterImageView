@@ -3,6 +3,7 @@ package chengang.lofterimageview.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
@@ -55,7 +59,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         runEnterAnimation(viewHolder.itemView, position);
         viewHolder.image.setAdjustViewBounds(true);
         String imageUrl = datas.get(position).get(0);
-        Glide.with(mContext).load(imageUrl).placeholder(Color.GRAY).into(viewHolder.image);
+        Glide.with(mContext).load(imageUrl)
+                .placeholder(R.drawable.ic_image_loading)
+                .error(R.drawable.ic_image_error).
+                into(viewHolder.image);
     }
 
     @Override
