@@ -87,7 +87,9 @@ public class LofterProgressView extends View {
 
     public LofterProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        //先获取自定义的配置
         initAttrs(context, attrs);
+        //再进行画笔的初始化
         initProSettings();
     }
 
@@ -133,18 +135,19 @@ public class LofterProgressView extends View {
         mEdgePaint.setStrokeWidth(mRingWidth);
         mEdgePaint.setStyle(Paint.Style.STROKE);
 
+        //字体的画笔
         mPercentPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPercentPaint.setColor(mPercentColor);
         mPercentPaint.setStyle(Paint.Style.FILL);
         mPercentPaint.setTextSize(mPercentSize);
 
-        mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBgPaint.setColor(mBgColor);
-        mBgPaint.setStyle(Paint.Style.FILL);
-
         //计算字体的高度
         Paint.FontMetrics fm = mPercentPaint.getFontMetrics();
         mTextHeight = (int) Math.ceil(fm.descent - fm.ascent);
+
+        mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mBgPaint.setColor(mBgColor);
+        mBgPaint.setStyle(Paint.Style.FILL);
 
         mOval = new RectF();
         mBgRect = new RectF();
