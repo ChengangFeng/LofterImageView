@@ -48,12 +48,12 @@
         app:bgColor="@color/white"
         app:bgCornerRadius="12dp"
         app:bgWidth="70dp"
-        app:edgeColor="#89afaeae"
+        app:edgeColor="@color/default_edge_color"
         app:innerColor="@color/white"
         app:innerRadius="17dp"
         app:percentColor="@color/gray"
         app:percentSize="11sp"
-        app:ringColor="#fc7272"
+        app:ringColor="@color/default_ring_color"
         app:ringWidth="2dp" />
 
 </RelativeLayout>

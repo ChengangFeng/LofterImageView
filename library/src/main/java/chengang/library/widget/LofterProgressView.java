@@ -101,14 +101,14 @@ public class LofterProgressView extends View {
      */
     private void initAttrs(Context context, @Nullable AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ProgressView);
-        mBgWidth = typedArray.getDimensionPixelSize(R.styleable.ProgressView_bgWidth, 100);
+        mBgWidth = typedArray.getDimensionPixelSize(R.styleable.ProgressView_bgWidth, 210);
         mBgColor = typedArray.getColor(R.styleable.ProgressView_bgColor, Color.WHITE);
-        mBgCornerRadius = typedArray.getDimensionPixelSize(R.styleable.ProgressView_bgCornerRadius, 20);
+        mBgCornerRadius = typedArray.getDimensionPixelSize(R.styleable.ProgressView_bgCornerRadius, 28);
         mInnerRadius = typedArray.getDimensionPixelSize(R.styleable.ProgressView_innerRadius, 50);
-        mInnerColor = typedArray.getColor(R.styleable.ProgressView_innerColor, Color.GRAY);
-        mEdgeColor = typedArray.getColor(R.styleable.ProgressView_edgeColor, Color.RED);
-        mRingWidth = typedArray.getDimensionPixelSize(R.styleable.ProgressView_ringWidth, 10);
-        mRingColor = typedArray.getColor(R.styleable.ProgressView_ringColor, Color.BLUE);
+        mInnerColor = typedArray.getColor(R.styleable.ProgressView_innerColor, Color.WHITE);
+        mEdgeColor = typedArray.getColor(R.styleable.ProgressView_edgeColor, getResources().getColor(R.color.default_edge_color));
+        mRingWidth = typedArray.getDimensionPixelSize(R.styleable.ProgressView_ringWidth, 5);
+        mRingColor = typedArray.getColor(R.styleable.ProgressView_ringColor, getResources().getColor(R.color.default_ring_color));
         mPercentColor = typedArray.getColor(R.styleable.ProgressView_percentColor, Color.GRAY);
         mPercentSize = typedArray.getDimensionPixelSize(R.styleable.ProgressView_percentSize, 30);
         typedArray.recycle();
