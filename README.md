@@ -1,4 +1,5 @@
 # LofterImageView 
+一个类似Lofter图片预览的小控件
 
 **PS:目前控件自定义项还比较少，以后渐渐完善**
 
@@ -60,25 +61,24 @@ public class GlideConfiguration implements GlideModule {
 
 Step 4
 
-单图预览
 ```
+//单图预览
 <chengang.library.widget.LofterImageView
     android:id="@+id/LofterImageView"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
-```
-```
+    
 mLofterImageView.load(IMAGE_URL);
 ```
 
-多图预览
 ```
+//多图预览
 <chengang.library.widget.LofterGallery
     android:id="@+id/LofterGallery"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
-```
-```
+    
 mLofterGallery.showGallery(mutiImages, 0);
 ```
+
 
