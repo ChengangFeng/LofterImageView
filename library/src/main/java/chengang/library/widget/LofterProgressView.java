@@ -201,7 +201,7 @@ public class LofterProgressView extends View {
      *
      * @param progress 进度
      */
-    public void setProgress(int progress) {
+    public synchronized void setProgress(int progress) {
         this.mCurrentProgress = progress;
         postInvalidate();
     }
@@ -211,7 +211,7 @@ public class LofterProgressView extends View {
      *
      * @param totalProgress 总进度
      */
-    public void setTotalProgress(int totalProgress) {
+    public synchronized void setTotalProgress(int totalProgress) {
         this.mTotalProgress = totalProgress;
     }
 
@@ -220,7 +220,7 @@ public class LofterProgressView extends View {
      *
      * @param percent 百分比
      */
-    public void setPercent(int percent) {
+    public synchronized void setPercent(int percent) {
         this.mPercent = percent;
         postInvalidate();
     }
